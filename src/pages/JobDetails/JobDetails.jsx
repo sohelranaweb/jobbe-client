@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useLoaderData, useParams } from "react-router-dom";
+import { Link, useLoaderData, useParams } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const JobDetails = () => {
@@ -17,12 +17,19 @@ const JobDetails = () => {
     application_deadline,
   } = loaddedJob;
   console.log(loaddedJob);
-  console.log("user Email", user_email, "user Auth", user.email);
-  const { id } = useParams();
   const isSameUser = user_email === user.email;
+
+  const handleApllyJob = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.displayName.value;
+    const email = form.email.value;
+    const resume = form.resumeLink.value;
+    console.log(name, email, resume);
+  };
+
   return (
     <div className="my-10">
-      <h1>this is job Details page: {id}</h1>
       <div className="card lg:card-side glass p-4">
         <figure>
           <img className="" src={job_banner} alt="car!" />
@@ -53,11 +60,79 @@ const JobDetails = () => {
                 Apply
               </button>
             ) : (
-              <button className="btn btn-primary">Apply</button>
+              <Link>
+                <button
+                  onClick={() =>
+                    document.getElementById("my_modal_3").showModal()
+                  }
+                  className="btn btn-primary"
+                >
+                  Apply
+                </button>
+              </Link>
             )}
           </div>
         </div>
       </div>
+      {/* modal */}
+      <dialog id="my_modal_3" className="modal">
+        <div className="modal-box">
+          <form method="dialog">
+            {/* if there is a button in form, it will close the modal */}
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+              ✕
+            </button>
+          </form>
+          <h3 className="font-bold text-lg">Hello!</h3>
+          <form onSubmit={handleApllyJob} className="lg:w-1/2 md:w-3/4 mx-auto">
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Name</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Name"
+                defaultValue={user?.displayName}
+                name="displayName"
+                className="input input-bordered"
+                required
+              />
+            </div>
+
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Email</span>
+              </label>
+              <input
+                type="email"
+                placeholder="Email"
+                defaultValue={user?.email}
+                name="email"
+                className="input input-bordered"
+                required
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Resume Link</span>
+              </label>
+              <input
+                type="url"
+                placeholder="Resume Link"
+                name="resumeLink"
+                className="input input-bordered"
+                accept=".pdf"
+                required
+              />
+            </div>
+            <div className="form-control mt-6">
+              <button className="btn text-white btn-outline bg-[#2e6ed5]">
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      </dialog>
     </div>
   );
 };
