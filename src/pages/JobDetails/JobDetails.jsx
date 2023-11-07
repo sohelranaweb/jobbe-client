@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const JobDetails = () => {
+  const { user } = useContext(AuthContext);
   const loaddedJob = useLoaderData();
   const {
     user_email,
@@ -14,7 +17,9 @@ const JobDetails = () => {
     application_deadline,
   } = loaddedJob;
   console.log(loaddedJob);
+  console.log("user Email", user_email, "user Auth", user.email);
   const { id } = useParams();
+  const isSameUser = user_email === user.email;
   return (
     <div className="my-10">
       <h1>this is job Details page: {id}</h1>
@@ -43,7 +48,13 @@ const JobDetails = () => {
               <p>Posting Date: {posting_date}</p>
               <p>Application Deadline: {application_deadline}</p>
             </div>
-            <button className="btn btn-primary">Apply</button>
+            {isSameUser ? (
+              <button className="btn btn-primary" disabled>
+                Apply
+              </button>
+            ) : (
+              <button className="btn btn-primary">Apply</button>
+            )}
           </div>
         </div>
       </div>
