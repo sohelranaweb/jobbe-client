@@ -1,6 +1,12 @@
-import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const handleSignOut = () => {
+    logOut().then().catch();
+  };
   const navItems = (
     <>
       <li>
@@ -61,7 +67,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/myJobs"
+          to="/myJob"
           className={({ isActive, isPending }) =>
             isPending
               ? "pending"
@@ -124,7 +130,34 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{navItems}</ul>
       </div>
       <div className="navbar-end">
-        <a className="">Login</a>
+        <div className="mr-2">
+          {user ? (
+            <div className="flex justify-center items-center">
+              <h1>{user.displayName}</h1>
+              <img
+                className="w-[40px] rounded-full ml-2"
+                src={user.photoURL}
+                alt=""
+              />
+            </div>
+          ) : (
+            ""
+          )}{" "}
+        </div>
+        {user ? (
+          <button
+            onClick={handleSignOut}
+            className="btn text-white btn-outline bg-[#2e6ed5]"
+          >
+            Log Out
+          </button>
+        ) : (
+          <Link to="/login">
+            <button className="btn text-white btn-outline bg-[#2e6ed5]">
+              Login
+            </button>
+          </Link>
+        )}
       </div>
     </div>
   );

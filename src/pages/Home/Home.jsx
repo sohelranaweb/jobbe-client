@@ -5,7 +5,7 @@ import JobCategoryCard from "./JobCategoryCard";
 
 const Home = () => {
   const loadedData = useLoaderData();
-  console.log(loadedData);
+  // console.log(loadedData);
   const [tab, setTab] = useState(1);
   const activeTab = (tabNumber) => {
     setTab(tabNumber);
@@ -30,7 +30,7 @@ const Home = () => {
       : tab === 4
       ? partTime
       : null;
-  console.log(data);
+  // console.log(data);
   return (
     <div>
       <div className="my-16">
