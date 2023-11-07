@@ -1,16 +1,65 @@
 import { useContext } from "react";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const AddJob = () => {
   const { user } = useContext(AuthContext);
+  const handleAddJob = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const user_name = form.userName.value;
+    const user_email = form.userEmail.value;
+    const company_logo = form.companyLogo.value;
+    const job_title = form.jobTitle.value;
+    const job_category = form.jobCategory.value;
+    const salary_range = form.salaryRange.value;
+    const job_description = form.jobDescription.value;
+    const posting_date = form.postingDate.value;
+    const application_deadline = form.applcationDeadline.value;
+    const applicants_number = form.applicantsNumber.value;
+    const job_banner = form.jobBannerUrl.value;
+    const newJob = {
+      user_name,
+      user_email,
+      company_logo,
+      job_title,
+      job_category,
+      salary_range,
+      job_description,
+      posting_date,
+      application_deadline,
+      applicants_number,
+      job_banner,
+    };
+    console.log(newJob);
+    fetch("http://localhost:5000/jobCategories", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newJob),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Success!",
+            text: "Do you want to continue",
+            icon: "success",
+            confirmButtonText: "Cool",
+          });
+        }
+      });
+  };
   return (
     <div>
       <div className="bg-[#F4F3F0] p-24 mt-8">
         <h1 className="lg:text-3xl text-xl font-bold text-center my-4">
           Add a <span className="text-[#2e6ed5]">Job</span>
         </h1>
-        <form>
-          {/* form row product name and brand name */}
+        <form onSubmit={handleAddJob}>
+          {/* form row logged user name and email */}
           <div className="md:flex mb-8">
             <div className="form-control md:w-1/2">
               <label className="label">
@@ -22,6 +71,36 @@ const AddJob = () => {
                   placeholder="User name"
                   defaultValue={user?.displayName}
                   name="userName"
+                  className="input input-bordered w-full"
+                />
+              </label>
+            </div>
+            <div className="form-control md:w-1/2 ml-4">
+              <label className="label">
+                <span className="label-text">User Email</span>
+              </label>
+              <label className="input-group">
+                <input
+                  type="text"
+                  name="userEmail"
+                  defaultValue={user?.email}
+                  placeholder="User Email"
+                  className="input input-bordered w-full"
+                />
+              </label>
+            </div>
+          </div>
+          {/* form row company logo and job title */}
+          <div className="md:flex mb-8">
+            <div className="form-control md:w-1/2">
+              <label className="label">
+                <span className="label-text">Company Logo</span>
+              </label>
+              <label className="input-group">
+                <input
+                  type="url"
+                  placeholder="Company Logo"
+                  name="companyLogo"
                   className="input input-bordered w-full"
                 />
               </label>
@@ -40,7 +119,7 @@ const AddJob = () => {
               </label>
             </div>
           </div>
-          {/* form row type of product name and price */}
+          {/* form row job category and salary range */}
           <div className="md:flex mb-8">
             <div className="form-control md:w-1/2">
               <label className="label">
@@ -69,7 +148,7 @@ const AddJob = () => {
               </label>
             </div>
           </div>
-          {/* form row short description and rating */}
+          {/* form row job description and job posting date */}
           <div className="md:flex mb-8">
             <div className="form-control md:w-1/2">
               <label className="label">
@@ -98,7 +177,7 @@ const AddJob = () => {
               </label>
             </div>
           </div>
-          {/* form row short description and rating */}
+          {/* form row application deadline and applicants number */}
           <div className="md:flex mb-8">
             <div className="form-control md:w-1/2">
               <label className="label">
@@ -106,9 +185,9 @@ const AddJob = () => {
               </label>
               <label className="input-group">
                 <input
-                  type="text"
+                  type="date"
                   placeholder="Application Deadline"
-                  name="deadline"
+                  name="applcationDeadline"
                   className="input input-bordered w-full"
                 />
               </label>

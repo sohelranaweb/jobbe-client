@@ -5,20 +5,22 @@ import JobCategoryCard from "./JobCategoryCard";
 
 const Home = () => {
   const loadedData = useLoaderData();
-  // console.log(loadedData);
+  console.log(loadedData);
   const [tab, setTab] = useState(1);
   const activeTab = (tabNumber) => {
     setTab(tabNumber);
   };
   const onSite = loadedData.filter(
-    (product) => product.category === "On Site Job"
+    (product) => product.job_category === "On Site Job"
   );
   const remote = loadedData.filter(
-    (product) => product.category === "Remote Job"
+    (product) => product.job_category === "Remote Job"
   );
-  const hybrid = loadedData.filter((product) => product.category === "Hybrid");
+  const hybrid = loadedData.filter(
+    (product) => product.job_category === "Hybrid"
+  );
   const partTime = loadedData.filter(
-    (product) => product.category === "Part Time"
+    (product) => product.job_category === "Part Time"
   );
   const data =
     tab === 1
