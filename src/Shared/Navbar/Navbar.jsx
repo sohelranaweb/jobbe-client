@@ -19,7 +19,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/about"
+          to="/allJobs"
           className={({ isActive, isPending }) =>
             isPending
               ? "pending"
@@ -28,7 +28,63 @@ const Navbar = () => {
               : "text-lg font-bold"
           }
         >
-          About
+          All Jobs
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/appliedJobs"
+          className={({ isActive, isPending }) =>
+            isPending
+              ? "pending"
+              : isActive
+              ? "text-[#72B261]  text-lg font-bold"
+              : "text-lg font-bold"
+          }
+        >
+          Applied Jobs
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/addJob"
+          className={({ isActive, isPending }) =>
+            isPending
+              ? "pending"
+              : isActive
+              ? "text-[#72B261]  text-lg font-bold"
+              : "text-lg font-bold"
+          }
+        >
+          Add a Job
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/myJobs"
+          className={({ isActive, isPending }) =>
+            isPending
+              ? "pending"
+              : isActive
+              ? "text-[#72B261]  text-lg font-bold"
+              : "text-lg font-bold"
+          }
+        >
+          My Jobs
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/blogs"
+          className={({ isActive, isPending }) =>
+            isPending
+              ? "pending"
+              : isActive
+              ? "text-[#72B261]  text-lg font-bold"
+              : "text-lg font-bold"
+          }
+        >
+          Blogs
         </NavLink>
       </li>
     </>
