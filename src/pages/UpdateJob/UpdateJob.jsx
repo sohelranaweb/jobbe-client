@@ -1,10 +1,25 @@
 import { useContext } from "react";
+import { useLoaderData, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../providers/AuthProvider";
 
-const AddJob = () => {
+const UpdateJob = () => {
+  const { id } = useParams();
   const { user } = useContext(AuthContext);
-  const handleAddJob = (event) => {
+  const loadedJob = useLoaderData();
+  const {
+    _id,
+    company_logo,
+    job_title,
+    job_category,
+    salary_range,
+    job_description,
+    posting_date,
+    application_deadline,
+    applicants_number,
+    job_banner,
+  } = loadedJob;
+  const handleUpdateJob = (event) => {
     event.preventDefault();
     const form = event.target;
     const user_name = form.userName.value;
@@ -32,8 +47,8 @@ const AddJob = () => {
       job_banner,
     };
     console.log(newJob);
-    fetch("http://localhost:5000/jobCategories", {
-      method: "POST",
+    fetch(`http://localhost:5000/jobCategories/${_id}`, {
+      method: "PUT",
       headers: {
         "content-type": "application/json",
       },
@@ -42,10 +57,10 @@ const AddJob = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (data.insertedId) {
+        if (data.modifiedCount > 0) {
           Swal.fire({
             title: "Success!",
-            text: "Do you want to continue",
+            text: "Updated product successfully",
             icon: "success",
             confirmButtonText: "Cool",
           });
@@ -54,11 +69,12 @@ const AddJob = () => {
   };
   return (
     <div>
+      <h1>This is update Job: {id}</h1>
       <div className="bg-[#F4F3F0] p-24 mt-8">
         <h1 className="lg:text-3xl text-xl font-bold text-center my-4">
-          Add a <span className="text-[#2e6ed5]">Job</span>
+          Update a <span className="text-[#2e6ed5]">Job</span>
         </h1>
-        <form onSubmit={handleAddJob}>
+        <form onSubmit={handleUpdateJob}>
           {/* form row logged user name and email */}
           <div className="md:flex mb-8">
             <div className="form-control md:w-1/2">
@@ -100,6 +116,7 @@ const AddJob = () => {
                 <input
                   type="url"
                   placeholder="Company Logo"
+                  defaultValue={company_logo}
                   name="companyLogo"
                   className="input input-bordered w-full"
                 />
@@ -113,6 +130,7 @@ const AddJob = () => {
                 <input
                   type="text"
                   name="jobTitle"
+                  defaultValue={job_title}
                   placeholder="Job Title"
                   className="input input-bordered w-full"
                 />
@@ -129,6 +147,7 @@ const AddJob = () => {
                 <input
                   type=""
                   placeholder="Job Category"
+                  defaultValue={job_category}
                   name="jobCategory"
                   className="input input-bordered w-full"
                 />
@@ -142,6 +161,7 @@ const AddJob = () => {
                 <input
                   type="text"
                   name="salaryRange"
+                  defaultValue={salary_range}
                   placeholder="Salary Range"
                   className="input input-bordered w-full"
                 />
@@ -158,6 +178,7 @@ const AddJob = () => {
                 <input
                   type="text"
                   placeholder="Job Description"
+                  defaultValue={job_description}
                   name="jobDescription"
                   className="input input-bordered w-full"
                 />
@@ -171,6 +192,7 @@ const AddJob = () => {
                 <input
                   type="date"
                   name="postingDate"
+                  defaultValue={posting_date}
                   placeholder="Posting Date"
                   className="input input-bordered w-full"
                 />
@@ -187,6 +209,7 @@ const AddJob = () => {
                 <input
                   type="date"
                   placeholder="Application Deadline"
+                  defaultValue={application_deadline}
                   name="applcationDeadline"
                   className="input input-bordered w-full"
                 />
@@ -200,6 +223,7 @@ const AddJob = () => {
                 <input
                   type="number"
                   name="applicantsNumber"
+                  defaultValue={applicants_number}
                   placeholder="Applicants Number"
                   className="input input-bordered w-full"
                 />
@@ -216,6 +240,7 @@ const AddJob = () => {
                 <input
                   type="url"
                   placeholder="Photo URL Of Job Banner"
+                  defaultValue={job_banner}
                   name="jobBannerUrl"
                   className="input input-bordered w-full"
                 />
@@ -224,7 +249,7 @@ const AddJob = () => {
           </div>
           <input
             type="submit"
-            value="Add Job"
+            value="Update Job"
             className="btn btn-block text-white bg-[#2e6ed5]"
           />
         </form>
@@ -233,4 +258,4 @@ const AddJob = () => {
   );
 };
 
-export default AddJob;
+export default UpdateJob;
