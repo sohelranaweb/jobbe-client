@@ -1,14 +1,52 @@
-import { useContext } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const MyJob = () => {
   const { user } = useContext(AuthContext);
   const email = user.email;
-  const loadedJobs = useLoaderData();
-  // console.log(loadedJobs);
-  const specificUserData = loadedJobs.filter((job) => job.user_email === email);
-  // console.log(specificUserData);
+
+  const [jobs, setJobs] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:5000/jobCategories")
+      .then((res) => res.json())
+      .then((data) => setJobs(data));
+  }, []);
+
+  const specificUserData = jobs.filter((job) => job.user_email === email);
+
+  const handleDeleteJob = (_id) => {
+    console.log(_id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/jobCategories/${_id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              Swal.fire(
+                "Deleted!",
+                "Your product has been deleted.",
+                "success"
+              );
+              const remaining = jobs.filter((job) => job._id !== _id);
+              setJobs(remaining);
+            }
+          });
+      }
+    });
+  };
+
   return (
     <div>
       <h1>This is my job page</h1>
@@ -39,7 +77,7 @@ const MyJob = () => {
                   </Link>
                 </td>
                 <td>
-                  <Link to={`/job/${job._id}`}>
+                  <Link onClick={() => handleDeleteJob(job._id)}>
                     <button className="btn">Delete</button>
                   </Link>
                 </td>

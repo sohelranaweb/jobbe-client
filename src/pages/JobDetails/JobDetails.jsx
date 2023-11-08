@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link, useLoaderData, useParams } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const JobDetails = () => {
   const { user } = useContext(AuthContext);
@@ -19,19 +20,39 @@ const JobDetails = () => {
   console.log(loaddedJob);
   const isSameUser = user_email === user.email;
 
-  const handleApllyJob = (event) => {
+  const handleAppliedJob = (event) => {
     event.preventDefault();
     const form = event.target;
-    const name = form.displayName.value;
-    const email = form.email.value;
+    const user_name = form.displayName.value;
+    const user_email = form.email.value;
     const resume = form.resumeLink.value;
-    console.log(name, email, resume);
+    console.log(user_name, user_email, resume);
+    const newAppliedJob = { user_name, user_email, resume };
+    fetch("http://localhost:5000/appliedJobs", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newAppliedJob),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Success!",
+            text: "Do you want to continue",
+            icon: "success",
+            confirmButtonText: "Cool",
+          });
+        }
+      });
   };
 
   return (
     <div className="my-10">
       <div className="card lg:card-side glass p-4">
-        <figure>
+        <figure className="w-[1200px]">
           <img className="" src={job_banner} alt="car!" />
         </figure>
 
@@ -84,7 +105,10 @@ const JobDetails = () => {
             </button>
           </form>
           <h3 className="font-bold text-lg">Hello!</h3>
-          <form onSubmit={handleApllyJob} className="lg:w-1/2 md:w-3/4 mx-auto">
+          <form
+            onSubmit={handleAppliedJob}
+            className="lg:w-1/2 md:w-3/4 mx-auto"
+          >
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Name</span>
