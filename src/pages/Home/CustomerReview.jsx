@@ -1,4 +1,4 @@
-const NewsLetter = () => {
+const CustomerReview = () => {
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -11,11 +11,10 @@ const NewsLetter = () => {
             />
           </div>
           <p className="mt-3 text-center">
-            I recently purchased a Digitech smartwatch from this store, and it
-            has truly exceeded my expectations. The watch is stylish,
-            feature-packed, and works seamlessly with my smartphone. I am
-            impressed with its accurate health monitoring and the long battery
-            life. Digitech has won me over with this fantastic product
+            Jobbe is a fantastic platform! It streamlined my job search by
+            offering a wide range of job opportunities in one place. The
+            application process was straightforward, and the constant updates on
+            new listings kept me engaged. I secured an amazing
           </p>
           <div className="flex justify-center mt-2">
             <div className="text-center">
@@ -35,11 +34,10 @@ const NewsLetter = () => {
             />
           </div>
           <p className="mt-3 text-center">
-            I've been a fan of Digitech products for years, and this new laptop
-            didn't disappoint. It's fast, reliable, and the build quality is
-            top-notch. However, I had a minor issue with the touchpad drivers
-            initially, but their customer support helped me resolve it promptly.
-            Overall, I'm pleased with my purchase.
+            Using Jobbe was a game-changer for me. The personalized job
+            recommendations matched my skills perfectly. The site's efficient
+            search filters and regular updates on new listings made job hunting
+            stress-free. I landed a great job quickly. Thank you, Jobbe!
           </p>
           <div className="flex justify-center mt-2">
             <div className="text-center">
@@ -59,11 +57,10 @@ const NewsLetter = () => {
             />
           </div>
           <p className="mt-3 text-center">
-            Digitech's wireless earbuds are nothing short of amazing. The sound
-            quality is exceptional, and they fit comfortably in my ears, even
-            during workouts. The Bluetooth connectivity is seamless, and the
-            battery life is impressive. If you're looking for high-quality
-            audio, these earbuds are a must-have!.
+            Jobbe made my job search a breeze! The interface is user-friendly,
+            and the variety of job listings is impressive. I found the perfect
+            role within days of signing up. Highly recommended for anyone
+            seeking a seamless job hunting experience..
           </p>
           <div className="flex justify-center mt-2">
             <div className="text-center">
@@ -79,4 +76,4 @@ const NewsLetter = () => {
   );
 };
 
-export default NewsLetter;
+export default CustomerReview;

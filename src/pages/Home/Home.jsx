@@ -1,9 +1,10 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import Banner from "./Banner";
 import { useState } from "react";
 import JobCategoryCard from "./JobCategoryCard";
 import FeaturedCompany from "./FeaturedCompany";
-import NewsLetter from "./NewsLetter";
+
+import CustomerReview from "./CustomerReview";
 
 const Home = () => {
   const loadedData = useLoaderData();
@@ -13,16 +14,16 @@ const Home = () => {
     setTab(tabNumber);
   };
   const onSite = loadedData.filter(
-    (product) => product.job_category === "On Site Job"
+    (product) => product.job_category.toLowerCase() === "on site job"
   );
   const remote = loadedData.filter(
-    (product) => product.job_category === "Remote Job"
+    (product) => product.job_category.toLowerCase() === "remote job"
   );
   const hybrid = loadedData.filter(
-    (product) => product.job_category === "Hybrid"
+    (product) => product.job_category.toLowerCase() === "hybrid"
   );
   const partTime = loadedData.filter(
-    (product) => product.job_category === "Part Time"
+    (product) => product.job_category.toLowerCase() === "part time"
   );
   const data =
     tab === 1
@@ -95,7 +96,7 @@ const Home = () => {
         </h1>
 
         <div className="mt-4">
-          <NewsLetter></NewsLetter>
+          <CustomerReview></CustomerReview>
         </div>
       </div>
     </div>
