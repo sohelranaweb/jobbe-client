@@ -133,10 +133,10 @@ const Navbar = () => {
         <div className="mr-2">
           {user ? (
             <div className="flex justify-center items-center">
-              <h1>{user.displayName}</h1>
+              <h1>{user?.displayName}</h1>
               <img
                 className="w-[40px] rounded-full ml-2"
-                src={user.photoURL}
+                src={user?.photoURL}
                 alt=""
               />
             </div>

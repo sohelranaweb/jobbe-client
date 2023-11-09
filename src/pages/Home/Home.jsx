@@ -8,7 +8,7 @@ import CustomerReview from "./CustomerReview";
 
 const Home = () => {
   const loadedData = useLoaderData();
-  console.log(loadedData);
+  // console.log(loadedData);
   const [tab, setTab] = useState(1);
   const activeTab = (tabNumber) => {
     setTab(tabNumber);
