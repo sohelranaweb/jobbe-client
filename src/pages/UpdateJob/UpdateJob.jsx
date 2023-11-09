@@ -47,7 +47,7 @@ const UpdateJob = () => {
       job_banner,
     };
     console.log(newJob);
-    fetch(`http://localhost:5000/jobCategories/${_id}`, {
+    fetch(`https://jobbe-server.vercel.app/jobCategories/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -72,7 +72,7 @@ const UpdateJob = () => {
       <h1>This is update Job: {id}</h1>
       <div className="bg-[#F4F3F0] p-24 mt-8">
         <h1 className="lg:text-3xl text-xl font-bold text-center my-4">
-          Update a <span className="text-[#2e6ed5]">Job</span>
+          Update a <span className="text-[#72B261]">Job</span>
         </h1>
         <form onSubmit={handleUpdateJob}>
           {/* form row logged user name and email */}
@@ -250,7 +250,7 @@ const UpdateJob = () => {
           <input
             type="submit"
             value="Update Job"
-            className="btn btn-block text-white bg-[#2e6ed5]"
+            className="btn btn-block text-white bg-[#72B261]"
           />
         </form>
       </div>

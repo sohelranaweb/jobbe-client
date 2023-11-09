@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import { Helmet } from "react-helmet";
 
 const AppliedJob = () => {
   const { user } = useContext(AuthContext);
@@ -22,6 +23,9 @@ const AppliedJob = () => {
   };
   return (
     <div>
+      <Helmet>
+        <title>Jobbe | Applied Job</title>
+      </Helmet>
       <div
         className="hero h-[50vh] my-8"
         style={{
@@ -44,7 +48,7 @@ const AppliedJob = () => {
                   onChange={(event) => setSearchItem(event.target.value)}
                 />
                 <button
-                  className="btn bg-[#FF444A] text-white"
+                  className="btn bg-[#72B261] text-white"
                   onClick={handleSearchButtonClick}
                 >
                   Search

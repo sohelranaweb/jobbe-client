@@ -5,6 +5,7 @@ import JobCategoryCard from "./JobCategoryCard";
 import FeaturedCompany from "./FeaturedCompany";
 
 import CustomerReview from "./CustomerReview";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
   const loadedData = useLoaderData();
@@ -37,66 +38,73 @@ const Home = () => {
       : null;
   // console.log(data);
   return (
-    <div className="lg:px-0 px-4">
-      {/* Banner section  */}
-      <div className="my-16">
-        <Banner></Banner>
-      </div>
+    <div>
+      <Helmet>
+        <title>Jobbe | Home</title>
+      </Helmet>
+      <div className="lg:px-0 px-4">
+        {/* Banner section  */}
+        <div className="my-16">
+          <Banner></Banner>
+        </div>
 
-      {/* Job category section  */}
-      <div className="mb-16">
-        <h1 className="text-center text-3xl font-bold">Job Category</h1>
-        {/* tab  */}
-        <div className=" lg:w-2/4 lg:h-16 my-10 lg:mx-auto lg:flex lg:justify-between items-center space-y-2">
-          <div
-            onClick={() => activeTab(1)}
-            style={{ borderBottom: tab === 1 ? "5px solid yellow" : "" }}
-            className="text-white text-center px-4 py-2 bg-[#72B261] rounded-full"
-          >
-            On Site Job
-          </div>
+        {/* Job category section  */}
+        <div className="mb-16">
+          <h1 className="text-center text-3xl font-bold">Job Category</h1>
+          {/* tab  */}
+          <div className=" lg:w-2/4 lg:h-16 my-10 lg:mx-auto lg:flex lg:justify-between items-center space-y-2">
+            <div
+              onClick={() => activeTab(1)}
+              style={{ borderBottom: tab === 1 ? "5px solid yellow" : "" }}
+              className="text-white text-center px-4 py-2 bg-[#72B261] rounded-full"
+            >
+              On Site Job
+            </div>
 
-          <div
-            onClick={() => activeTab(2)}
-            style={{ borderBottom: tab === 2 ? "5px solid yellow" : "" }}
-            className="text-white px-4 py-2 bg-[#72B261] rounded-full"
-          >
-            Remote Job
+            <div
+              onClick={() => activeTab(2)}
+              style={{ borderBottom: tab === 2 ? "5px solid yellow" : "" }}
+              className="text-white px-4 py-2 bg-[#72B261] rounded-full"
+            >
+              Remote Job
+            </div>
+            <div
+              onClick={() => activeTab(3)}
+              style={{ borderBottom: tab === 3 ? "5px solid yellow" : "" }}
+              className="text-white px-4 py-2 bg-[#72B261] rounded-full"
+            >
+              Hybrid
+            </div>
+            <div
+              onClick={() => activeTab(4)}
+              style={{ borderBottom: tab === 4 ? "5px solid yellow" : "" }}
+              className="text-white px-4 py-2 bg-[#72B261] rounded-full"
+            >
+              Part Time
+            </div>
           </div>
-          <div
-            onClick={() => activeTab(3)}
-            style={{ borderBottom: tab === 3 ? "5px solid yellow" : "" }}
-            className="text-white px-4 py-2 bg-[#72B261] rounded-full"
-          >
-            Hybrid
-          </div>
-          <div
-            onClick={() => activeTab(4)}
-            style={{ borderBottom: tab === 4 ? "5px solid yellow" : "" }}
-            className="text-white px-4 py-2 bg-[#72B261] rounded-full"
-          >
-            Part Time
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {data.map((job) => (
+              <JobCategoryCard key={job._id} job={job}></JobCategoryCard>
+            ))}
           </div>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {data.map((job) => (
-            <JobCategoryCard key={job._id} job={job}></JobCategoryCard>
-          ))}
+        {/* Feature Company  */}
+        <div className="mb-16">
+          <FeaturedCompany></FeaturedCompany>
         </div>
-      </div>
-      {/* Feature Company  */}
-      <div className="mb-16">
-        <FeaturedCompany></FeaturedCompany>
-      </div>
-      {/* Testimonial  */}
-      <div className="mb-16">
-        <h1 className="text-lg text-[#72B261] text-center mb-2">TESTIMONIAL</h1>
-        <h1 className="text-center text-3xl font-medium mb-2">
-          What they say about us
-        </h1>
+        {/* Testimonial  */}
+        <div className="mb-16">
+          <h1 className="text-lg text-[#72B261] text-center mb-2">
+            TESTIMONIAL
+          </h1>
+          <h1 className="text-center text-3xl font-medium mb-2">
+            What they say about us
+          </h1>
 
-        <div className="mt-4">
-          <CustomerReview></CustomerReview>
+          <div className="mt-4">
+            <CustomerReview></CustomerReview>
+          </div>
         </div>
       </div>
     </div>

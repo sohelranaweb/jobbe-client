@@ -22,10 +22,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () =>
-          fetch("http://localhost:5000/jobCategories", {
-            credentials: "include",
-          }),
+        loader: () => fetch("https://jobbe-server.vercel.app/jobCategories"),
       },
       {
         path: "/addJob",
@@ -54,10 +51,7 @@ const router = createBrowserRouter([
       {
         path: "alljobs",
         element: <AllJobs></AllJobs>,
-        loader: () =>
-          fetch("http://localhost:5000/jobCategories", {
-            credentials: "include",
-          }),
+        loader: () => fetch("https://jobbe-server.vercel.app/jobCategories"),
       },
       {
         path: "/job/:id",
@@ -66,13 +60,14 @@ const router = createBrowserRouter([
             <JobDetails></JobDetails>
           </PrivateRoute>
         ),
-        loader: ({ params }) => fetch(`http://localhost:5000/job/${params.id}`),
+        loader: ({ params }) =>
+          fetch(`https://jobbe-server.vercel.app/job/${params.id}`),
       },
       {
         path: "/updateJob/:id",
         element: <UpdateJob></UpdateJob>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/updateJob/${params.id}`),
+          fetch(`https://jobbe-server.vercel.app/updateJob/${params.id}`),
       },
       {
         path: "/appliedJobs",
@@ -82,7 +77,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: () =>
-          fetch("http://localhost:5000/appliedJobs", {
+          fetch("https://jobbe-server.vercel.app/appliedJobs", {
             credentials: "include",
           }),
       },

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 import { Link, useLoaderData } from "react-router-dom";
 
 const AllJobs = () => {
@@ -17,6 +18,9 @@ const AllJobs = () => {
   };
   return (
     <div>
+      <Helmet>
+        <title>Jobbe | AllJobs</title>
+      </Helmet>
       <div
         className="hero h-[50vh] my-8"
         style={{
@@ -39,7 +43,7 @@ const AllJobs = () => {
                   onChange={(event) => setSearchItem(event.target.value)}
                 />
                 <button
-                  className="btn bg-[#FF444A] text-white"
+                  className="btn bg-[#72B261] text-white"
                   onClick={handleSearchButtonClick}
                 >
                   Search

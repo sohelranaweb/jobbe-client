@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../providers/AuthProvider";
+import { Helmet } from "react-helmet";
 
 const AddJob = () => {
   const { user } = useContext(AuthContext);
@@ -32,7 +33,7 @@ const AddJob = () => {
       job_banner,
     };
     console.log(newJob);
-    fetch("http://localhost:5000/jobCategories", {
+    fetch("https://jobbe-server.vercel.app/jobCategories", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -54,9 +55,12 @@ const AddJob = () => {
   };
   return (
     <div>
+      <Helmet>
+        <title>Jobbe | Add Job</title>
+      </Helmet>
       <div className="bg-[#F4F3F0] p-24 mt-8">
         <h1 className="lg:text-3xl text-xl font-bold text-center my-4">
-          Add a <span className="text-[#2e6ed5]">Job</span>
+          Add a <span className="text-[#72B261]">Job</span>
         </h1>
         <form onSubmit={handleAddJob}>
           {/* form row logged user name and email */}
@@ -225,7 +229,7 @@ const AddJob = () => {
           <input
             type="submit"
             value="Add Job"
-            className="btn btn-block text-white bg-[#2e6ed5]"
+            className="btn btn-block text-white bg-[#72B261]"
           />
         </form>
       </div>

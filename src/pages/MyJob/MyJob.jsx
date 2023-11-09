@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const MyJob = () => {
   const { user } = useContext(AuthContext);
@@ -9,7 +10,7 @@ const MyJob = () => {
 
   const [jobs, setJobs] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/jobCategories", { credentials: "include" })
+    fetch("https://jobbe-server.vercel.app/jobCategories")
       .then((res) => res.json())
       .then((data) => setJobs(data));
   }, []);
@@ -28,7 +29,7 @@ const MyJob = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/jobCategories/${_id}`, {
+        fetch(`https://jobbe-server.vercel.app/jobCategories/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -49,7 +50,10 @@ const MyJob = () => {
 
   return (
     <div>
-      <h1>This is my job page</h1>
+      <Helmet>
+        <title>Jobbe | My Job</title>
+      </Helmet>
+
       <div className="overflow-x-auto my-10">
         <table className="table table-xs">
           <thead>

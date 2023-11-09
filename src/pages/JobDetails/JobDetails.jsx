@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link, useLoaderData, useParams } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 
@@ -65,7 +65,7 @@ const JobDetails = () => {
       posting_date,
       application_deadline,
     };
-    fetch("http://localhost:5000/appliedJobs", {
+    fetch("https://jobbe-server.vercel.app/appliedJobs", {
       method: "POST",
       headers: {
         "content-type": "application/json",

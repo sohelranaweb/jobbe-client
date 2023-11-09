@@ -59,7 +59,7 @@ const AuthProvider = ({ children }) => {
       // if curretn user exist then issue token
       if (currentUser) {
         axios
-          .post("http://localhost:5000/jwt", loggedUser, {
+          .post("https://jobbe-server.vercel.app/jwt", loggedUser, {
             withCredentials: true,
           })
           .then((res) => {
@@ -67,7 +67,7 @@ const AuthProvider = ({ children }) => {
           });
       } else {
         axios
-          .post("http://localhost:5000/logout", loggedUser, {
+          .post("https://jobbe-server.vercel.app/logout", loggedUser, {
             withCredentials: true,
           })
           .then((res) => {
