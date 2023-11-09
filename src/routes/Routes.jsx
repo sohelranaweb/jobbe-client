@@ -22,7 +22,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/jobCategories"),
+        loader: () =>
+          fetch("http://localhost:5000/jobCategories", {
+            credentials: "include",
+          }),
       },
       {
         path: "/addJob",
@@ -51,7 +54,10 @@ const router = createBrowserRouter([
       {
         path: "alljobs",
         element: <AllJobs></AllJobs>,
-        loader: () => fetch("http://localhost:5000/jobCategories"),
+        loader: () =>
+          fetch("http://localhost:5000/jobCategories", {
+            credentials: "include",
+          }),
       },
       {
         path: "/job/:id",
@@ -75,7 +81,10 @@ const router = createBrowserRouter([
             <AppliedJob></AppliedJob>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/appliedJobs"),
+        loader: () =>
+          fetch("http://localhost:5000/appliedJobs", {
+            credentials: "include",
+          }),
       },
       {
         path: "/blogs",
