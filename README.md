@@ -1,7 +1,6 @@
 # Live sit link
 https://jobbe-client.web.app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 # Project Feature
 - React Router: React Router is a routing library for React applications. It enables developers to manage navigation and define different routes in a single-page application (SPA). It allows for dynamic loading of components based on the URL, providing a seamless user experience without full-page reloads.
