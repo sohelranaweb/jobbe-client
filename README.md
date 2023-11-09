@@ -14,4 +14,4 @@ This template provides a minimal setup to get React working in Vite with HMR and
 - JWT Token: JWT stands for JSON Web Token. It's a compact, URL-safe means of representing claims to be transferred between two parties. The claims in a JWT are encoded as a JSON object and used as a way to securely transmit information between parties.
   
 - Express.js: Express.js is a web application framework for Node.js. It simplifies the process of building web applications and APIs by providing a set of features and tools for handling HTTP requests, routing, middleware, and more. Express is widely used due to its simplicity and extensive community support.
-- 
+  
