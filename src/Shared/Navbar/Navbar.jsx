@@ -147,13 +147,13 @@ const Navbar = () => {
         {user ? (
           <button
             onClick={handleSignOut}
-            className="btn text-white btn-outline bg-[#2e6ed5]"
+            className="btn btn-outline bg-[#72B261] text-white"
           >
             Log Out
           </button>
         ) : (
           <Link to="/login">
-            <button className="btn text-white btn-outline bg-[#2e6ed5]">
+            <button className="btn btn-outline bg-[#72B261] text-white">
               Login
             </button>
           </Link>
