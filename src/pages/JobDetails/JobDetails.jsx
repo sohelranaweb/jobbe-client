@@ -25,7 +25,7 @@ const JobDetails = () => {
   const handleAppliedJob = (event) => {
     event.preventDefault();
     const form = event.target;
-    const user_name = form.userName.value;
+    const applicant_name = form.userName.value;
     const user_email = form.userEmail.value;
     const resume = form.resumeLink.value;
     const company_logo = form.companyLogo.value;
@@ -38,7 +38,7 @@ const JobDetails = () => {
     const posting_date = form.postingDate.value;
     const application_deadline = form.applicationDeadline.value;
     console.log(
-      user_name,
+      applicant_name,
       user_email,
       resume,
       company_logo,
@@ -52,7 +52,7 @@ const JobDetails = () => {
       application_deadline
     );
     const newAppliedJob = {
-      user_name,
+      applicant_name,
       user_email,
       resume,
       company_logo,
@@ -96,13 +96,17 @@ const JobDetails = () => {
         <div className="card-body space-y-3">
           <h2 className="card-title">{job_title}</h2>
           <p>{job_description}</p>
-          <div className="flex items-center">
-            <h1 className="mr-4">Company:</h1>
-            <img
-              className="w-[100px] rounded-full border"
-              src={company_logo}
-              alt=""
-            />
+          <div className="md:flex md:justify-between md:items-center">
+            <div className="flex  items-center">
+              <h1 className="mr-4">Company:</h1>
+              <img
+                className="w-[70px] rounded-full border"
+                src={company_logo}
+                alt=""
+              />
+            </div>
+            <h1 className="mr-4">Job Category: {job_category}</h1>
+            <h1>Posted By: {user_name}</h1>
           </div>
           <div className="flex justify-between items-center">
             <div>
@@ -153,7 +157,7 @@ const JobDetails = () => {
                   <input
                     type="text"
                     placeholder="User name"
-                    defaultValue={user_name}
+                    defaultValue={user?.displayName}
                     name="userName"
                     className="input input-bordered w-full"
                   />
@@ -336,56 +340,6 @@ const JobDetails = () => {
               className="btn btn-block text-white bg-[#2e6ed5]"
             />
           </form>
-          {/* <form
-            onSubmit={handleAppliedJob}
-            className="lg:w-1/2 md:w-3/4 mx-auto"
-          >
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Name</span>
-              </label>
-              <input
-                type="text"
-                placeholder="Name"
-                defaultValue={user?.displayName}
-                name="displayName"
-                className="input input-bordered"
-                required
-              />
-            </div>
-
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Email</span>
-              </label>
-              <input
-                type="email"
-                placeholder="Email"
-                defaultValue={user?.email}
-                name="email"
-                className="input input-bordered"
-                required
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Resume Link</span>
-              </label>
-              <input
-                type="url"
-                placeholder="Resume Link"
-                name="resumeLink"
-                className="input input-bordered"
-                accept=".pdf"
-                required
-              />
-            </div>
-            <div className="form-control mt-6">
-              <button className="btn text-white btn-outline bg-[#2e6ed5]">
-                Submit
-              </button>
-            </div>
-          </form> */}
         </div>
       </dialog>
     </div>

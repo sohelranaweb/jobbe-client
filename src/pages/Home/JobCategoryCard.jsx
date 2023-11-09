@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const JobCategoryCard = ({ pd }) => {
+const JobCategoryCard = ({ job }) => {
   const {
     _id,
     user_name,
@@ -13,7 +13,7 @@ const JobCategoryCard = ({ pd }) => {
     applicants_number,
     posting_date,
     application_deadline,
-  } = pd;
+  } = job;
 
   return (
     <div>

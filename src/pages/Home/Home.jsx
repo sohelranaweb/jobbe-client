@@ -79,8 +79,8 @@ const Home = () => {
           </div>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {data.map((pd) => (
-            <JobCategoryCard key={pd._id} pd={pd}></JobCategoryCard>
+          {data.map((job) => (
+            <JobCategoryCard key={job._id} job={job}></JobCategoryCard>
           ))}
         </div>
       </div>
